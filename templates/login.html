@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content_noauth %}
+<div class="min-vh-100 d-flex align-items-center justify-content-center" style="background:#1a1f2e;">
+  <div class="card p-4" style="width:100%;max-width:400px;">
+    <div class="text-center mb-4">
+      <i class="bi bi-box-seam" style="font-size:2.5rem;color:#0d6efd;"></i>
+      <h4 class="mt-2 fw-bold">StockMaster</h4>
+      <p class="text-muted small">Sistema de Controle de Estoque</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" placeholder="seu@email.com" required>
+      </div>
+      <div class="mb-4">
+        <label class="form-label">Senha</label>
+        <input type="password" name="senha" class="form-control" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Entrar</button>
+    </form>
+
+    <p class="text-center text-muted small mt-3">
+      Padrão: admin@stockmaster.com / admin123
+    </p>
+  </div>
+</div>
+{% endblock %}
