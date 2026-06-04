@@ -4,25 +4,25 @@
 
 ---
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 O StockMaster é um sistema web de gerenciamento de estoque que substitui o controle manual por planilhas, oferecendo uma interface centralizada para registro de produtos, movimentações, fornecedores e geração de relatórios.
 
 ---
 
-## ✅ Funcionalidades
+## Funcionalidades
 
-- 🔐 **Autenticação** — Login seguro com senha criptografada
-- 📊 **Dashboard** — Visão geral do estoque com alertas de itens críticos
-- 📦 **Produtos** — Cadastro, edição e exclusão de produtos
-- 🔄 **Movimentações** — Registro de entradas, saídas e ajustes de estoque
-- 🚚 **Fornecedores** — Cadastro e gerenciamento de fornecedores
-- 🛒 **Pedidos de Compra** — Emissão e controle de pedidos com confirmação de recebimento
-- 📈 **Relatórios** — Posição do estoque, itens críticos e histórico com filtro por data
+- **Autenticação** — Login seguro com senha criptografada
+- **Dashboard** — Visão geral do estoque com alertas de itens críticos
+- **Produtos** — Cadastro, edição e exclusão de produtos
+- **Movimentações** — Registro de entradas, saídas e ajustes de estoque
+- **Fornecedores** — Cadastro e gerenciamento de fornecedores
+- **Pedidos de Compra** — Emissão e controle de pedidos com confirmação de recebimento
+- **Relatórios** — Posição do estoque, itens críticos e histórico com filtro por data
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 | Tecnologia | Uso |
 |---|---|
@@ -33,11 +33,12 @@ O StockMaster é um sistema web de gerenciamento de estoque que substitui o cont
 | Bootstrap 5 | Interface visual |
 | Werkzeug | Criptografia de senhas |
 
+
 ---
 
-## 🚀 Como Executar
+## Como Executar
 
-### Opção 1 — Executável (recomendado para testes rápidos)
+### Executável 
 
 1. Certifique-se que o arquivo `StockMaster.exe` está na pasta do projeto
 2. Dê dois cliques em `StockMaster.exe`
@@ -48,9 +49,9 @@ http://localhost:5000
 
 ---
 
-### Opção 2 — Pelo terminal (recomendado para desenvolvimento)
+### OU Pelo terminal
 
-**Pré-requisitos:** Python 3.10+ instalado
+**Pré-requisitos:** Python instalado
 
 **1. Clone o repositório:**
 ```bash
@@ -75,18 +76,16 @@ http://localhost:5000
 
 ---
 
-## 🔑 Acesso Padrão
+## Acesso Padrão
 
 | Campo | Valor |
 |---|---|
 | Email | admin@stockmaster.com |
 | Senha | admin123 |
 
-> ⚠️ Recomendamos alterar a senha após o primeiro acesso em ambiente de produção.
-
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 stockmaster/
@@ -116,11 +115,9 @@ stockmaster/
 
 ---
 
-## 🗄️ Banco de Dados
+## Banco de Dados
 
 O sistema usa **SQLite** — um banco de dados em arquivo local, sem necessidade de instalação de servidor.
-
-O arquivo `stockmaster.db` é criado automaticamente na primeira execução.
 
 **Tabelas:**
 
@@ -134,12 +131,18 @@ O arquivo `stockmaster.db` é criado automaticamente na primeira execução.
 
 ---
 
-## 👥 Equipe
+## Equipe
 
-Desenvolvido por alunos do curso de **Engenharia de Software** como projeto da disciplina de Prática Profissional.
+Mayara de Oliveira           RA: 202444484
+Matheus do Prado Fais        RA: 202454284
+Jefferson Costa da Silva     RA: 202416050
+Lucas Barboza Leandro        RA: 202454106
+Poliana Araujo Oliveira      RA: 202447398
+Ane Yumie Matsumoto Rolim    RA: 202446892
+Felipe de Sousa Duzo         RA: 202320905
 
 ---
 
-## 📄 Licença
+## Licença
 
 Este projeto é de uso acadêmico.
