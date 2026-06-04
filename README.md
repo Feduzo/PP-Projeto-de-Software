@@ -1,46 +1,145 @@
-# StockMaster 📦
+# 📦 StockMaster
 
-Sistema de controle de estoque — Monticoifas LTDA
+> Sistema de Controle de Estoque desenvolvido para a **Monticoifas LTDA** como projeto acadêmico da disciplina de Prática Profissional — Engenharia de Software.
 
-## Como rodar
+---
 
-1. Instale as dependências:
+## 📋 Sobre o Projeto
+
+O StockMaster é um sistema web de gerenciamento de estoque que substitui o controle manual por planilhas, oferecendo uma interface centralizada para registro de produtos, movimentações, fornecedores e geração de relatórios.
+
+---
+
+## ✅ Funcionalidades
+
+- 🔐 **Autenticação** — Login seguro com senha criptografada
+- 📊 **Dashboard** — Visão geral do estoque com alertas de itens críticos
+- 📦 **Produtos** — Cadastro, edição e exclusão de produtos
+- 🔄 **Movimentações** — Registro de entradas, saídas e ajustes de estoque
+- 🚚 **Fornecedores** — Cadastro e gerenciamento de fornecedores
+- 🛒 **Pedidos de Compra** — Emissão e controle de pedidos com confirmação de recebimento
+- 📈 **Relatórios** — Posição do estoque, itens críticos e histórico com filtro por data
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Tecnologia | Uso |
+|---|---|
+| Python | Linguagem principal |
+| Flask | Framework web |
+| Flask-Login | Autenticação e sessão |
+| SQLite | Banco de dados local |
+| Bootstrap 5 | Interface visual |
+| Werkzeug | Criptografia de senhas |
+
+---
+
+## 🚀 Como Executar
+
+### Opção 1 — Executável (recomendado para testes rápidos)
+
+1. Certifique-se que o arquivo `StockMaster.exe` está na pasta do projeto
+2. Dê dois cliques em `StockMaster.exe`
+3. Abra o navegador e acesse:
 ```
+http://localhost:5000
+```
+
+---
+
+### Opção 2 — Pelo terminal (recomendado para desenvolvimento)
+
+**Pré-requisitos:** Python 3.10+ instalado
+
+**1. Clone o repositório:**
+```bash
+git clone https://github.com/Feduzo/PP-Projeto-de-Software.git
+cd PP-Projeto-de-Software
+```
+
+**2. Instale as dependências:**
+```bash
 pip install -r requirements.txt
 ```
 
-2. Inicie o sistema:
+**3. Execute o sistema:**
+```bash
+py app.py
 ```
-python app.py
+
+**4. Acesse no navegador:**
+```
+http://localhost:5000
 ```
 
-3. Acesse no navegador: http://localhost:5000
+---
 
-## Login padrão
-- Email: admin@stockmaster.com
-- Senha: admin123
+## 🔑 Acesso Padrão
 
-## Estrutura do projeto
+| Campo | Valor |
+|---|---|
+| Email | admin@stockmaster.com |
+| Senha | admin123 |
+
+> ⚠️ Recomendamos alterar a senha após o primeiro acesso em ambiente de produção.
+
+---
+
+## 📁 Estrutura do Projeto
+
 ```
 stockmaster/
-├── app.py                  → Arquivo principal, inicia o Flask
-├── database.py             → Conexão e criação do banco SQLite
-├── requirements.txt        → Dependências Python
-├── routes/
-│   ├── auth.py             → Login e logout
-│   ├── produtos.py         → CRUD de produtos
-│   └── movimentacoes.py    → Entradas e saídas de estoque
-└── templates/
-    ├── base.html           → Layout base (sidebar, menu)
-    ├── login.html          → Tela de login
-    ├── dashboard.html      → Painel principal
-    ├── produtos/           → Telas de produtos
-    └── movimentacoes/      → Telas de movimentações
+├── app.py                        # Arquivo principal — inicia o Flask
+├── database.py                   # Conexão e criação do banco de dados
+├── requirements.txt              # Dependências Python
+├── StockMaster.exe               # Executável (gerado pelo PyInstaller)
+│
+├── routes/                       # Rotas separadas por módulo
+│   ├── auth.py                   # Login e logout
+│   ├── produtos.py               # CRUD de produtos
+│   ├── movimentacoes.py          # Entradas, saídas e ajustes
+│   ├── fornecedores.py           # CRUD de fornecedores
+│   ├── compras.py                # Pedidos de compra
+│   └── relatorios.py             # Relatórios e filtros
+│
+└── templates/                    # Telas HTML
+    ├── base.html                 # Layout base com menu lateral
+    ├── login.html                # Tela de login
+    ├── dashboard.html            # Painel principal
+    ├── produtos/                 # Telas de produtos
+    ├── movimentacoes/            # Telas de movimentações
+    ├── fornecedores/             # Telas de fornecedores
+    ├── compras/                  # Telas de pedidos
+    └── relatorios/               # Telas de relatórios
 ```
 
-## Funcionalidades
-- Login com autenticação segura
-- Dashboard com resumo e alertas de estoque baixo
-- Cadastro, edição e exclusão de produtos
-- Registro de entradas e saídas com validação
-- Histórico completo de movimentações
+---
+
+## 🗄️ Banco de Dados
+
+O sistema usa **SQLite** — um banco de dados em arquivo local, sem necessidade de instalação de servidor.
+
+O arquivo `stockmaster.db` é criado automaticamente na primeira execução.
+
+**Tabelas:**
+
+| Tabela | Descrição |
+|---|---|
+| `usuarios` | Usuários do sistema com perfil de acesso |
+| `produtos` | Cadastro de produtos com estoque |
+| `fornecedores` | Fornecedores vinculados aos produtos |
+| `movimentacoes` | Histórico de entradas, saídas e ajustes |
+| `compras` | Pedidos de compra e status de recebimento |
+
+---
+
+## 👥 Equipe
+
+Desenvolvido por alunos do curso de **Engenharia de Software** como projeto da disciplina de Prática Profissional.
+
+---
+
+## 📄 Licença
+
+Este projeto é de uso acadêmico.
