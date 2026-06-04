@@ -132,14 +132,15 @@ O sistema usa **SQLite** — um banco de dados em arquivo local, sem necessidade
 ---
 
 ## Equipe
-
-Mayara de Oliveira           RA: 202444484
-Matheus do Prado Fais        RA: 202454284
-Jefferson Costa da Silva     RA: 202416050
-Lucas Barboza Leandro        RA: 202454106
-Poliana Araujo Oliveira      RA: 202447398
-Ane Yumie Matsumoto Rolim    RA: 202446892
-Felipe de Sousa Duzo         RA: 202320905
+| Nome | RA |
+|---|---|
+| Mayara de Oliveira | RA: 202444484
+| Matheus do Prado Fais | RA: 202454284
+| Jefferson Costa da Silva | RA: 202416050
+| Lucas Barboza Leandro | RA: 202454106
+| Poliana Araujo Oliveira | RA: 202447398
+| Ane Yumie Matsumoto Rolim | RA: 202446892
+| Felipe de Sousa Duzo | RA: 202320905
 
 ---
 
