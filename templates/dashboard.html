@@ -1,38 +1,37 @@
 {% extends "base.html" %}
 {% block page_title %}Dashboard{% endblock %}
-
 {% block content %}
-<!-- Cards de estatísticas -->
+
 <div class="row g-3 mb-4">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <div class="card stat-card blue p-3">
       <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <p class="text-muted small mb-0">Total de Produtos</p>
-          <h3 class="fw-bold mb-0">{{ total_produtos }}</h3>
-        </div>
+        <div><p class="text-muted small mb-0">Produtos</p><h3 class="fw-bold mb-0">{{ total_produtos }}</h3></div>
         <i class="bi bi-archive text-primary" style="font-size:2rem;"></i>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <div class="card stat-card green p-3">
       <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <p class="text-muted small mb-0">Itens em Estoque</p>
-          <h3 class="fw-bold mb-0">{{ total_estoque }}</h3>
-        </div>
+        <div><p class="text-muted small mb-0">Itens em Estoque</p><h3 class="fw-bold mb-0">{{ total_estoque }}</h3></div>
         <i class="bi bi-boxes text-success" style="font-size:2rem;"></i>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
+    <div class="card stat-card yellow p-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <div><p class="text-muted small mb-0">Fornecedores</p><h3 class="fw-bold mb-0">{{ total_fornecedores }}</h3></div>
+        <i class="bi bi-truck text-warning" style="font-size:2rem;"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
     <div class="card stat-card red p-3">
       <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <p class="text-muted small mb-0">Alertas de Estoque</p>
-          <h3 class="fw-bold mb-0">{{ alertas|length }}</h3>
-        </div>
+        <div><p class="text-muted small mb-0">Alertas / Pedidos Pend.</p>
+          <h3 class="fw-bold mb-0">{{ alertas|length }} / {{ compras_pendentes }}</h3></div>
         <i class="bi bi-exclamation-triangle text-danger" style="font-size:2rem;"></i>
       </div>
     </div>
@@ -40,41 +39,39 @@
 </div>
 
 <div class="row g-3">
-  <!-- Alertas de estoque baixo -->
   {% if alertas %}
-  <div class="col-md-5">
+  <div class="col-md-4">
     <div class="card p-3">
-      <h6 class="fw-bold mb-3 text-danger"><i class="bi bi-exclamation-triangle me-2"></i>Estoque Baixo</h6>
+      <h6 class="fw-bold mb-3 text-danger"><i class="bi bi-exclamation-triangle me-2"></i>Estoque Crítico</h6>
       {% for a in alertas %}
       <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-        <span>{{ a.nome }}</span>
+        <span class="small">{{ a.nome }}</span>
         <span class="badge bg-danger">{{ a.quantidade }} / mín {{ a.estoque_minimo }}</span>
       </div>
       {% endfor %}
+      <a href="/relatorios/" class="btn btn-sm btn-outline-danger mt-3 w-100">Ver Relatório Completo</a>
     </div>
   </div>
   {% endif %}
 
-  <!-- Últimas movimentações -->
   <div class="col">
     <div class="card p-3">
       <h6 class="fw-bold mb-3"><i class="bi bi-clock-history me-2"></i>Últimas Movimentações</h6>
       {% if ultimas_mov %}
       <table class="table table-sm table-hover mb-0">
         <thead class="table-light">
-          <tr><th>Produto</th><th>Tipo</th><th>Qtd</th><th>Data</th></tr>
+          <tr><th>Produto</th><th>Tipo</th><th>Qtd</th><th>Data</th><th>Usuário</th></tr>
         </thead>
         <tbody>
           {% for m in ultimas_mov %}
           <tr>
             <td>{{ m.produto }}</td>
             <td>
-              <span class="badge {% if m.tipo == 'entrada' %}badge-entrada{% else %}badge-saida{% endif %}">
-                {{ m.tipo }}
-              </span>
+              <span class="badge badge-{{ m.tipo }}">{{ m.tipo }}</span>
             </td>
             <td>{{ m.quantidade }}</td>
             <td class="text-muted small">{{ m.data }}</td>
+            <td class="text-muted small">{{ m.usuario }}</td>
           </tr>
           {% endfor %}
         </tbody>

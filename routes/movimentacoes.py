@@ -10,7 +10,7 @@ mov_bp = Blueprint("movimentacoes", __name__, url_prefix="/movimentacoes")
 def listar():
     conn = get_connection()
     movs = conn.execute("""
-        SELECT m.*, p.nome as produto, u.nome as usuario
+        SELECT m.*, p.nome AS produto, u.nome AS usuario
         FROM movimentacoes m
         JOIN produtos p ON m.produto_id = p.id
         JOIN usuarios u ON m.usuario_id = u.id
@@ -26,34 +26,33 @@ def nova():
 
     if request.method == "POST":
         produto_id = int(request.form["produto_id"])
-        tipo       = request.form["tipo"]           # 'entrada' ou 'saida'
-        quantidade = int(request.form["quantidade"])
+        tipo       = request.form["tipo"]
+        quantidade = float(request.form["quantidade"])
+        observacao = request.form.get("observacao", "")
         data       = datetime.now().strftime("%Y-%m-%d %H:%M")
 
-        produto = conn.execute("SELECT * FROM produtos WHERE id = ?", (produto_id,)).fetchone()
+        produto = conn.execute("SELECT * FROM produtos WHERE id=?", (produto_id,)).fetchone()
 
-        # Valida saída: não pode tirar mais do que tem
         if tipo == "saida" and quantidade > produto["quantidade"]:
-            flash(f"Estoque insuficiente! Disponível: {produto['quantidade']} unidades.", "danger")
+            flash(f"Estoque insuficiente! Disponível: {produto['quantidade']}.", "danger")
             produtos = conn.execute("SELECT * FROM produtos ORDER BY nome").fetchall()
             conn.close()
             return render_template("movimentacoes/form.html", produtos=produtos)
 
-        # Registra a movimentação
         conn.execute("""
-            INSERT INTO movimentacoes (produto_id, tipo, quantidade, data, usuario_id)
-            VALUES (?, ?, ?, ?, ?)
-        """, (produto_id, tipo, quantidade, data, current_user.id))
+            INSERT INTO movimentacoes (produto_id, tipo, quantidade, data, usuario_id, observacao)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (produto_id, tipo, quantidade, data, current_user.id, observacao))
 
-        # Atualiza o estoque do produto
         if tipo == "entrada":
-            conn.execute("UPDATE produtos SET quantidade = quantidade + ? WHERE id = ?", (quantidade, produto_id))
-        else:
-            conn.execute("UPDATE produtos SET quantidade = quantidade - ? WHERE id = ?", (quantidade, produto_id))
+            conn.execute("UPDATE produtos SET quantidade = quantidade + ? WHERE id=?", (quantidade, produto_id))
+        elif tipo == "saida":
+            conn.execute("UPDATE produtos SET quantidade = quantidade - ? WHERE id=?", (quantidade, produto_id))
+        else:  # ajuste — sobrescreve o saldo direto
+            conn.execute("UPDATE produtos SET quantidade = ? WHERE id=?", (quantidade, produto_id))
 
         conn.commit()
         conn.close()
-
         flash("Movimentação registrada!", "success")
         return redirect(url_for("movimentacoes.listar"))
 

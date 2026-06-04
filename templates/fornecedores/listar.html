@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block page_title %}Fornecedores{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h5 class="fw-bold mb-0">Fornecedores Cadastrados</h5>
+  <a href="/fornecedores/novo" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1"></i>Novo Fornecedor</a>
+</div>
+<div class="card">
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead class="table-light">
+        <tr><th>#</th><th>Nome</th><th>Contato</th><th>CNPJ</th><th>Ações</th></tr>
+      </thead>
+      <tbody>
+        {% for f in fornecedores %}
+        <tr>
+          <td class="text-muted">{{ f.id }}</td>
+          <td>{{ f.nome }}</td>
+          <td>{{ f.contato or '—' }}</td>
+          <td>{{ f.cnpj or '—' }}</td>
+          <td>
+            <a href="/fornecedores/editar/{{ f.id }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+            <a href="/fornecedores/excluir/{{ f.id }}" class="btn btn-sm btn-outline-danger"
+               onclick="return confirm('Excluir fornecedor?')"><i class="bi bi-trash"></i></a>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" class="text-center text-muted py-4">Nenhum fornecedor cadastrado.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

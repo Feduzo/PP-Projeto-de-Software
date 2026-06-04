@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block page_title %}{{ 'Editar' if fornecedor else 'Novo' }} Fornecedor{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h5 class="fw-bold mb-0">{{ 'Editar Fornecedor' if fornecedor else 'Cadastrar Fornecedor' }}</h5>
+  <a href="/fornecedores/" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Voltar</a>
+</div>
+<div class="card p-4" style="max-width:540px;">
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Nome *</label>
+      <input type="text" name="nome" class="form-control" value="{{ fornecedor.nome if fornecedor else '' }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Contato (e-mail ou telefone)</label>
+      <input type="text" name="contato" class="form-control" value="{{ fornecedor.contato if fornecedor else '' }}">
+    </div>
+    <div class="mb-4">
+      <label class="form-label">CNPJ</label>
+      <input type="text" name="cnpj" class="form-control" value="{{ fornecedor.cnpj if fornecedor else '' }}" placeholder="00.000.000/0000-00">
+    </div>
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-check-lg me-1"></i>{{ 'Salvar' if fornecedor else 'Cadastrar' }}
+    </button>
+  </form>
+</div>
+{% endblock %}
