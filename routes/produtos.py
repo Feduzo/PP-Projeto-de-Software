@@ -43,7 +43,7 @@ def editar(id):
     if request.method == "POST":
         nome       = request.form["nome"]
         categoria  = request.form["categoria"]
-        est_minimo = int(request.form["estoque_minimo"])
+        est_minimo = int(float (request.form["estoque_minimo"]))
         preco      = float(request.form["preco"])
 
         conn.execute("""
