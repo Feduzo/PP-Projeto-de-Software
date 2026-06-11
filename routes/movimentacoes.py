@@ -25,9 +25,10 @@ def nova():
     conn = get_connection()
 
     if request.method == "POST":
-        produto_id = int(request.form["produto_id"])
+        print("FORM DATA EDITAR:", dict(request.form))  # aqui dentro
+        produto_id = int(float(request.form["produto_id"]))
         tipo       = request.form["tipo"]
-        quantidade = float(request.form["quantidade"])
+        quantidade = int(float(request.form["quantidade"]))
         observacao = request.form.get("observacao", "")
         data       = datetime.now().strftime("%Y-%m-%d %H:%M")
 

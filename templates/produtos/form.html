@@ -13,14 +13,12 @@
   <form method="POST">
     <div class="mb-3">
       <label class="form-label">Nome do Produto *</label>
-      <input type="text" name="nome" class="form-control"
-             value="{{ produto.nome if produto else '' }}" required>
+      <input type="text" name="nome" class="form-control" value="{{ produto.nome if produto else '' }}" required>
     </div>
     <div class="mb-3">
       <label class="form-label">Categoria</label>
-      <input type="text" name="categoria" class="form-control"
-             value="{{ produto.categoria if produto else '' }}"
-             placeholder="Ex: Eletrônicos, Ferramentas...">
+      <input type="text" name="categoria" class="form-control" value="{{ produto.categoria if produto else '' }}"
+        placeholder="Ex: Eletrônicos, Ferramentas...">
     </div>
     <div class="row g-3 mb-3">
       {% if not produto %}
@@ -32,12 +30,13 @@
       <div class="col">
         <label class="form-label">Estoque Mínimo</label>
         <input type="number" name="estoque_minimo" class="form-control"
-               value="{{ produto.estoque_minimo if produto else 5 }}" min="0" required>
+          value="{{ produto.estoque_minimo if produto else 5 }}" step="any" min="0" required>
+
       </div>
       <div class="col">
         <label class="form-label">Preço (R$)</label>
         <input type="number" name="preco" class="form-control" step="0.01"
-               value="{{ produto.preco if produto else '0.00' }}" min="0" required>
+          value="{{ produto.preco if produto else '0.00' }}" min="0" required>
       </div>
     </div>
 
