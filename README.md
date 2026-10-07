@@ -1,149 +1,97 @@
-# 📦 StockMaster
+# StockMaster
 
-> Sistema de Controle de Estoque desenvolvido para a **Monticoifas LTDA** como projeto acadêmico da disciplina de Prática Profissional — Engenharia de Software.
+Inventory management system built for **Monticoifas LTDA**, a real company that controlled its stock with spreadsheets. Academic project for the Professional Practice course of the Software Engineering program at USF.
 
----
+<!-- Screenshots: add the images to docs/screenshots/ and remove this comment
+![Dashboard](docs/screenshots/dashboard.png)
+![Products](docs/screenshots/products.png)
+![Reports](docs/screenshots/reports.png)
+-->
 
-## Sobre o Projeto
+## Features
 
-O StockMaster é um sistema web de gerenciamento de estoque que substitui o controle manual por planilhas, oferecendo uma interface centralizada para registro de produtos, movimentações, fornecedores e geração de relatórios.
+- **Authentication:** login with hashed passwords and user profiles.
+- **Dashboard:** stock overview with alerts for items below the minimum level.
+- **Products:** create, edit and delete products.
+- **Stock movements:** record inbound, outbound and adjustment entries.
+- **Suppliers:** manage suppliers linked to products.
+- **Purchase orders:** issue orders and confirm receipt.
+- **Reports:** current stock, critical items and history filtered by date.
 
----
+## Tech stack
 
-## Funcionalidades
+| Technology | Purpose |
+| --- | --- |
+| Python | Main language |
+| Flask | Web framework, split into Blueprints per module |
+| Flask-Login | Authentication and sessions |
+| SQLite | Local file database, no server needed |
+| Bootstrap 5 | User interface |
+| Werkzeug | Password hashing |
+| PyInstaller | Windows executable |
 
-- **Autenticação** — Login seguro com senha criptografada
-- **Dashboard** — Visão geral do estoque com alertas de itens críticos
-- **Produtos** — Cadastro, edição e exclusão de produtos
-- **Movimentações** — Registro de entradas, saídas e ajustes de estoque
-- **Fornecedores** — Cadastro e gerenciamento de fornecedores
-- **Pedidos de Compra** — Emissão e controle de pedidos com confirmação de recebimento
-- **Relatórios** — Posição do estoque, itens críticos e histórico com filtro por data
+## Running it
 
----
+### Windows executable
 
-## Tecnologias Utilizadas
+Download [`StockMaster.exe`](https://github.com/Feduzo/PP-Projeto-de-Software/raw/main/StockMaster.exe), run it and open http://localhost:5000.
 
-| Tecnologia | Uso |
-|---|---|
-| Python | Linguagem principal |
-| Flask | Framework web |
-| Flask-Login | Autenticação e sessão |
-| SQLite | Banco de dados local |
-| Bootstrap 5 | Interface visual |
-| Werkzeug | Criptografia de senhas |
+### From source
 
+Requirements: Python 3.10+.
 
----
-
-## Como Executar
-
-### Executável 
-
-1. Certifique-se que o arquivo `StockMaster.exe` está na pasta do projeto
-2. Dê dois cliques em `StockMaster.exe`
-3. Abra o navegador e acesse:
-```
-http://localhost:5000
-```
-
----
-
-### OU Pelo terminal
-
-**Pré-requisitos:** Python instalado
-
-**1. Clone o repositório:**
 ```bash
 git clone https://github.com/Feduzo/PP-Projeto-de-Software.git
 cd PP-Projeto-de-Software
-```
-
-**2. Instale as dependências:**
-```bash
 pip install -r requirements.txt
+python app.py
 ```
 
-**3. Execute o sistema:**
-```bash
-py app.py
-```
+Open http://localhost:5000. The database is created automatically on first run.
 
-**4. Acesse no navegador:**
-```
-http://localhost:5000
-```
+To build the executable yourself, run `build.bat` (requires `pip install pyinstaller`).
 
----
+**Demo login** (created locally on first run):
 
-## Acesso Padrão
-
-| Campo | Valor |
-|---|---|
+| Field | Value |
+| --- | --- |
 | Email | admin@stockmaster.com |
-| Senha | admin123 |
+| Password | admin123 |
 
----
+## Project structure
 
-## Estrutura do Projeto
-
-```
-stockmaster/
-├── app.py                        # Arquivo principal — inicia o Flask
-├── database.py                   # Conexão e criação do banco de dados
-├── requirements.txt              # Dependências Python
-├── StockMaster.exe               # Executável (gerado pelo PyInstaller)
-│
-├── routes/                       # Rotas separadas por módulo
-│   ├── auth.py                   # Login e logout
-│   ├── produtos.py               # CRUD de produtos
-│   ├── movimentacoes.py          # Entradas, saídas e ajustes
-│   ├── fornecedores.py           # CRUD de fornecedores
-│   ├── compras.py                # Pedidos de compra
-│   └── relatorios.py             # Relatórios e filtros
-│
-└── templates/                    # Telas HTML
-    ├── base.html                 # Layout base com menu lateral
-    ├── login.html                # Tela de login
-    ├── dashboard.html            # Painel principal
-    ├── produtos/                 # Telas de produtos
-    ├── movimentacoes/            # Telas de movimentações
-    ├── fornecedores/             # Telas de fornecedores
-    ├── compras/                  # Telas de pedidos
-    └── relatorios/               # Telas de relatórios
+```text
+├── app.py              # Starts Flask, login manager and dashboard
+├── database.py         # Connection and table creation
+├── requirements.txt
+├── routes/             # One Blueprint per module
+│   ├── auth.py         # Login and logout
+│   ├── produtos.py     # Products CRUD
+│   ├── movimentacoes.py  # Inbound, outbound and adjustments
+│   ├── fornecedores.py # Suppliers CRUD
+│   ├── compras.py      # Purchase orders
+│   └── relatorios.py   # Reports and filters
+└── templates/          # HTML pages (Jinja2 + Bootstrap)
 ```
 
----
+## Database
 
-## Banco de Dados
+| Table | Description |
+| --- | --- |
+| `usuarios` | System users and their access profile |
+| `produtos` | Products with current and minimum stock |
+| `fornecedores` | Suppliers linked to products |
+| `movimentacoes` | History of inbound, outbound and adjustments |
+| `compras` | Purchase orders and receipt status |
 
-O sistema usa **SQLite** — um banco de dados em arquivo local, sem necessidade de instalação de servidor.
+## My role
 
-**Tabelas:**
+I built most of the application (around 90%): I designed the structure, chose the backend stack, implemented the modules and tested the system.
 
-| Tabela | Descrição |
-|---|---|
-| `usuarios` | Usuários do sistema com perfil de acesso |
-| `produtos` | Cadastro de produtos com estoque |
-| `fornecedores` | Fornecedores vinculados aos produtos |
-| `movimentacoes` | Histórico de entradas, saídas e ajustes |
-| `compras` | Pedidos de compra e status de recebimento |
+## Team
 
----
+Mayara de Oliveira, Matheus do Prado Fais, Jefferson Costa da Silva, Lucas Barboza Leandro, Poliana Araujo Oliveira, Ane Yumie Matsumoto Rolim and Felipe de Sousa Duzo.
 
-## Equipe
-| Nome | RA |
-|---|---|
-| Mayara de Oliveira | RA: 202444484
-| Matheus do Prado Fais | RA: 202454284
-| Jefferson Costa da Silva | RA: 202416050
-| Lucas Barboza Leandro | RA: 202454106
-| Poliana Araujo Oliveira | RA: 202447398
-| Ane Yumie Matsumoto Rolim | RA: 202446892
-| Felipe de Sousa Duzo | RA: 202320905
+## License
 
----
-
-## Licença
-
-Este projeto é de uso acadêmico.
+[MIT](LICENSE)
