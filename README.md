@@ -1,44 +1,44 @@
 # StockMaster
 
-Inventory management system built for **Monticoifas LTDA**, a real company that controlled its stock with spreadsheets. Academic project for the Professional Practice course of the Software Engineering program at USF.
+Sistema de controle de estoque feito para a **Monticoifas LTDA**, uma empresa real que controlava o estoque em planilhas. Projeto acadêmico da disciplina de Prática Profissional do curso de Engenharia de Software da USF.
 
-<!-- Screenshots: add the images to docs/screenshots/ and remove this comment
+<!-- Prints: adicione as imagens em docs/screenshots/ e apague este comentário
 ![Dashboard](docs/screenshots/dashboard.png)
-![Products](docs/screenshots/products.png)
-![Reports](docs/screenshots/reports.png)
+![Produtos](docs/screenshots/produtos.png)
+![Relatórios](docs/screenshots/relatorios.png)
 -->
 
-## Features
+## Funcionalidades
 
-- **Authentication:** login with hashed passwords and user profiles.
-- **Dashboard:** stock overview with alerts for items below the minimum level.
-- **Products:** create, edit and delete products.
-- **Stock movements:** record inbound, outbound and adjustment entries.
-- **Suppliers:** manage suppliers linked to products.
-- **Purchase orders:** issue orders and confirm receipt.
-- **Reports:** current stock, critical items and history filtered by date.
+- **Autenticação:** login com senha criptografada e perfis de usuário.
+- **Dashboard:** visão geral do estoque com alertas de itens abaixo do mínimo.
+- **Produtos:** cadastro, edição e exclusão.
+- **Movimentações:** registro de entradas, saídas e ajustes.
+- **Fornecedores:** cadastro de fornecedores vinculados aos produtos.
+- **Pedidos de compra:** emissão de pedidos e confirmação de recebimento.
+- **Relatórios:** posição do estoque, itens críticos e histórico com filtro por data.
 
-## Tech stack
+## Stack
 
-| Technology | Purpose |
+| Tecnologia | Uso |
 | --- | --- |
-| Python | Main language |
-| Flask | Web framework, split into Blueprints per module |
-| Flask-Login | Authentication and sessions |
-| SQLite | Local file database, no server needed |
-| Bootstrap 5 | User interface |
-| Werkzeug | Password hashing |
-| PyInstaller | Windows executable |
+| Python | Linguagem principal |
+| Flask | Framework web, dividido em Blueprints por módulo |
+| Flask-Login | Autenticação e sessão |
+| SQLite | Banco em arquivo local, sem servidor |
+| Bootstrap 5 | Interface |
+| Werkzeug | Criptografia de senhas |
+| PyInstaller | Executável para Windows |
 
-## Running it
+## Como rodar
 
-### Windows executable
+### Executável para Windows
 
-Download [`StockMaster.exe`](https://github.com/Feduzo/PP-Projeto-de-Software/raw/main/StockMaster.exe), run it and open http://localhost:5000.
+Baixe o [`StockMaster.exe`](https://github.com/Feduzo/PP-Projeto-de-Software/raw/main/StockMaster.exe), execute e acesse http://localhost:5000.
 
-### From source
+### Pelo código
 
-Requirements: Python 3.10+.
+Requisitos: Python 3.10+.
 
 ```bash
 git clone https://github.com/Feduzo/PP-Projeto-de-Software.git
@@ -47,51 +47,51 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Open http://localhost:5000. The database is created automatically on first run.
+Acesse http://localhost:5000. O banco é criado automaticamente na primeira execução.
 
-To build the executable yourself, run `build.bat` (requires `pip install pyinstaller`).
+Para gerar o executável, rode `build.bat` (precisa de `pip install pyinstaller`).
 
-**Demo login** (created locally on first run):
+**Login de demonstração** (criado localmente na primeira execução):
 
-| Field | Value |
+| Campo | Valor |
 | --- | --- |
 | Email | admin@stockmaster.com |
-| Password | admin123 |
+| Senha | admin123 |
 
-## Project structure
+## Estrutura do projeto
 
 ```text
-├── app.py              # Starts Flask, login manager and dashboard
-├── database.py         # Connection and table creation
+├── app.py              # Inicia o Flask, o login e o dashboard
+├── database.py         # Conexão e criação das tabelas
 ├── requirements.txt
-├── routes/             # One Blueprint per module
-│   ├── auth.py         # Login and logout
-│   ├── produtos.py     # Products CRUD
-│   ├── movimentacoes.py  # Inbound, outbound and adjustments
-│   ├── fornecedores.py # Suppliers CRUD
-│   ├── compras.py      # Purchase orders
-│   └── relatorios.py   # Reports and filters
-└── templates/          # HTML pages (Jinja2 + Bootstrap)
+├── routes/             # Um Blueprint por módulo
+│   ├── auth.py         # Login e logout
+│   ├── produtos.py     # CRUD de produtos
+│   ├── movimentacoes.py  # Entradas, saídas e ajustes
+│   ├── fornecedores.py # CRUD de fornecedores
+│   ├── compras.py      # Pedidos de compra
+│   └── relatorios.py   # Relatórios e filtros
+└── templates/          # Telas HTML (Jinja2 + Bootstrap)
 ```
 
-## Database
+## Banco de dados
 
-| Table | Description |
+| Tabela | Descrição |
 | --- | --- |
-| `usuarios` | System users and their access profile |
-| `produtos` | Products with current and minimum stock |
-| `fornecedores` | Suppliers linked to products |
-| `movimentacoes` | History of inbound, outbound and adjustments |
-| `compras` | Purchase orders and receipt status |
+| `usuarios` | Usuários do sistema e perfil de acesso |
+| `produtos` | Produtos com estoque atual e mínimo |
+| `fornecedores` | Fornecedores vinculados aos produtos |
+| `movimentacoes` | Histórico de entradas, saídas e ajustes |
+| `compras` | Pedidos de compra e status de recebimento |
 
-## My role
+## Minha parte
 
-I built most of the application (around 90%): I designed the structure, chose the backend stack, implemented the modules and tested the system.
+Desenvolvi a maior parte do sistema (cerca de 90%): defini a estrutura, escolhi a stack do backend, implementei os módulos e testei o sistema.
 
-## Team
+## Equipe
 
-Mayara de Oliveira, Matheus do Prado Fais, Jefferson Costa da Silva, Lucas Barboza Leandro, Poliana Araujo Oliveira, Ane Yumie Matsumoto Rolim and Felipe de Sousa Duzo.
+Mayara de Oliveira, Matheus do Prado Fais, Jefferson Costa da Silva, Lucas Barboza Leandro, Poliana Araujo Oliveira, Ane Yumie Matsumoto Rolim e Felipe de Sousa Duzo.
 
-## License
+## Licença
 
 [MIT](LICENSE)
